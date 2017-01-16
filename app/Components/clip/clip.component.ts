@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
 import { videoClip } from '../../Entity/videoClip';
 import { TimeCodePipe } from '../../Filters/timeCodePipe'
+
 @Component({
     moduleId: __moduleName,
     selector: 'clip',

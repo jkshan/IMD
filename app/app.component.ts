@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+
 import { clipService } from './Components/clips/clipService';
 import { videoClip, reelVideo, reelVideoClip } from './Entity/videoClip';
 

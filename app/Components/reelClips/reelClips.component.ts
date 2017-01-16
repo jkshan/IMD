@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
 import { reelVideo, reelVideoClip, videoClip } from '../../Entity/videoClip';
 import { timeCode } from '../../Entity/timeCode';
 
@@ -8,8 +9,7 @@ import { NotificationsService } from 'angular2-notifications';
 @Component({
     moduleId: __moduleName,
     selector: 'reel',
-    templateUrl: 'reelClips.component.html',
-    changeDetection: ChangeDetectionStrategy.Default
+    templateUrl: 'reelClips.component.html'
 })
 export class ReelClipsComponent implements OnInit {
     reel: reelVideo;
@@ -33,9 +33,9 @@ export class ReelClipsComponent implements OnInit {
             this._notificationService.success(value.Name, "Added To Reel")
         } else {
             if (this.reel.Clips[0].Standard != value.Standard) {
-                this._notificationService.error("Error: " + value.Name, "Cannot add Video of Diffrent Standard");
+                this._notificationService.error("Info: " + value.Name, "Cannot add Video of Diffrent Standard");
             } else if (this.reel.Clips[0].Definition != value.Definition) {
-                this._notificationService.error("Error: " + value.Name, "Cannot add Video of Diffrent Definition");
+                this._notificationService.error("Info: " + value.Name, "Cannot add Video of Diffrent Definition");
             } else {
                 if (this.reel.Clips.find(i => i.Id == value.Id)) {
                     this._notificationService.info("Info", "Video :" + value.Name + " is already part of Reel")
@@ -56,6 +56,7 @@ export class ReelClipsComponent implements OnInit {
         this.reel.Clips.forEach((i, newIndex) => {
             i.order = newIndex + 1;
         });
+        this._notificationService.info("Info", "Video: " + value.Name + " is removed from Reel");
         console.log(this.reel.Clips);
     }
 }
