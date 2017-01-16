@@ -8,7 +8,8 @@ import { TimeCodePipe } from '../../Filters/timeCodePipe'
     selector: 'clip',
     templateUrl: 'clip.component.html',
     styles: [`.row{
-        padding:5px;
+        padding:5px;        
+        border: 1px solid black;
     }`]
 })
 export class ClipComponent implements OnInit {

@@ -10,6 +10,7 @@ import { EmitterService } from '../../Service/emitterService'
     templateUrl: 'clips.component.html',
     styles: [`.row{
         padding:5px;
+        border: 1px solid black;
     }`]
 })
 export class ClipsComponent implements OnInit {
