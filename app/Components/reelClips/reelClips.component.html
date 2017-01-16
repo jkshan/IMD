@@ -1,0 +1,19 @@
+<div style="padding: 5px">
+<div class="form-group">
+    <label for="reelName" class="sr-only">Reel Name</label>
+    <input type="text" [disabled]="reel.Clips.length==0" [(ngModel)]="reel.Name" class="form-control" id="reelName" placeholder="Reel Name">
+</div>
+<div class="form-group" *ngIf="reel.Clips.length>0">
+    <label class="control-label">Duration/Definition/Standard:</label>
+    <span class="form-control-static "> {{reel.Duration | TimeCode}}/{{reel.Clips[0]?.Standard}}/{{reel.Clips[0]?.Definition}}</span>
+</div>
+<div class="form-group" *ngFor="let item of reel.Clips">
+    <div class="form-control-static">
+        <input type="button" value="-" (click)="removeReelClip(item)" class="btn btn-warning btn-xs">
+        <span>{{item.Name}}({{item.Duration| TimeCode}})</span>
+    </div>
+</div>
+<div class="form-group">
+    <button type="submit" [disabled]="reel.Clips.length==0" class="form-control btn btn-primary">Save Reel</button>
+</div>
+</div>
