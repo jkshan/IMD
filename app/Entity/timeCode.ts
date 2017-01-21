@@ -1,28 +1,50 @@
-export class timeCode {
+export class TimeCode {
     hours: number;
     minutes: number;
     seconds: number;
     frames: number;
     frameRate: number;
 
-    constructor(private timeCode: string, private standard: string) {
-        var timeCodeArray = timeCode.split(':');
-        if (timeCodeArray.length != 4) {
-            console.log("Invalid timecode Value" + timeCode);
-            throw new Error("Invalid timecode Value" + timeCode);
+    public static add(first: TimeCode, second: TimeCode): TimeCode {
+        if (first.standard != second.standard) {
+            console.log('Video standard should match to add the timecode');
+            throw new Error('Video standard should match to add the timecode');
         }
-        if (["PAL", "NTSC"].indexOf(standard) == -1) {
-            console.log("Invalid video standard");
-            throw new Error("Invalid video standard");
+        let newTimeCode: TimeCode = new TimeCode('00:00:00:00', first.standard);
+        newTimeCode.frames = first.getFrameCount() + second.getFrameCount();
+        newTimeCode.updateFromFrameCount();
+        return newTimeCode;
+    }
+
+    public static subtract(first: TimeCode, second: TimeCode): TimeCode {
+        if (first.standard != second.standard) {
+            throw new Error('Video standard should match to subtract the timecode');
+        }
+
+        let newTimeCode: TimeCode = new TimeCode('00:00:00:00', first.standard);
+        newTimeCode.frames = first.getFrameCount() + (second.getFrameCount() * -1);
+        newTimeCode.updateFromFrameCount();
+        return newTimeCode;
+    }
+
+    constructor(private timeCode: string, private standard: string) {
+        let timeCodeArray = timeCode.split(':');
+        if (timeCodeArray.length != 4) {
+            console.log('Invalid timecode Value' + timeCode);
+            throw new Error('Invalid timecode Value' + timeCode);
+        }
+        if (['PAL', 'NTSC'].indexOf(standard) == -1) {
+            console.log('Invalid video standard');
+            throw new Error('Invalid video standard');
         }
 
         this.hours = this.convertToInt(timeCodeArray[0]);
         this.minutes = this.convertToInt(timeCodeArray[1]);
         this.seconds = this.convertToInt(timeCodeArray[2]);
         this.frames = this.convertToInt(timeCodeArray[3]);
-        if (this.standard == "PAL") {
+        if (this.standard == 'PAL') {
             this.frameRate = 25;
-        } else if (this.standard == "NTSC") {
+        } else if (this.standard == 'NTSC') {
             this.frameRate = 30;
         }
     }
@@ -32,7 +54,8 @@ export class timeCode {
     }
 
     public getTimeCodeAsString(): string {
-        return this.zeroPad(this.hours) + ":" + this.zeroPad(this.minutes) + ":" + this.zeroPad(this.seconds) + ":" + this.zeroPad(this.frames);
+        return this.zeroPad(this.hours) + ':' + this.zeroPad(this.minutes) + ':'
+            + this.zeroPad(this.seconds) + ':' + this.zeroPad(this.frames);
     }
 
     private getFrameCount(): number {
@@ -40,7 +63,7 @@ export class timeCode {
     }
 
     private updateFromFrameCount(): void {
-        var frame_count = this.frames;
+        let frame_count = this.frames;
         this.hours = frame_count / (3600 * this.frameRate);
         if (this.hours > 23) {
             this.hours = this.hours % 24;
@@ -57,27 +80,8 @@ export class timeCode {
     }
 
     private zeroPad(value: number): string {
-        var pad = (value < 10) ? "0" : "";
+        let pad = (value < 10) ? '0' : '';
         return pad + value;
     }
 
-    public static add(first: timeCode, second: timeCode): timeCode {
-        if (first.standard != second.standard) {
-            console.log("Video standard should match to add the timecode");
-            throw new Error("Video standard should match to add the timecode");
-        }
-        var newTimeCode: timeCode = new timeCode("00:00:00:00", first.standard);
-        newTimeCode.frames = first.getFrameCount() + second.getFrameCount();
-        newTimeCode.updateFromFrameCount();
-        return newTimeCode;
-    }
-
-    public static subtract(first: timeCode, second: timeCode): timeCode {
-        if (first.standard != second.standard) throw new Error("Video standard should match to subtract the timecode");
-
-        var newTimeCode: timeCode = new timeCode("00:00:00:00", first.standard);
-        newTimeCode.frames = first.getFrameCount() + (second.getFrameCount() * -1);
-        newTimeCode.updateFromFrameCount();
-        return newTimeCode;
-    }
 }

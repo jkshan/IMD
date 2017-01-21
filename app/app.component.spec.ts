@@ -12,7 +12,7 @@ import { ClipComponent } from './Components/clip/clip.component';
 import { ReelClipsComponent } from './Components/reelClips/reelClips.component';
 import { TimeCodePipe } from './Filters/timeCodePipe';
 
-import { SimpleNotificationsModule, SimpleNotificationsComponent } from 'angular2-notifications';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 describe('AppComponent', function () {
   let de: DebugElement;

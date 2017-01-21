@@ -1,9 +1,6 @@
-import { timeCode } from './timeCode';
+import { TimeCode } from './timeCode';
 
-/**
- * videoClip
- */
-export class videoClip {
+export class VideoClip {
     Id: string;
     Name: string;
     Description: string;
@@ -11,18 +8,18 @@ export class videoClip {
     Definition: string;
     StartTimecode: string;
     EndTimecode: string;
-    Duration: timeCode;
+    Duration: TimeCode;
 }
 
-export class reelVideoClip extends videoClip {
+export class ReelVideoClip extends VideoClip {
     order: number;
 }
 
-export class reelVideo {
+export class ReelVideo {
     Name: string;
-    Clips: Array<reelVideoClip>;
-    Duration: timeCode;
+    Clips: Array<ReelVideoClip>;
+    Duration: TimeCode;
     constructor() {
-        this.Clips = new Array<reelVideoClip>();
+        this.Clips = new Array<ReelVideoClip>();
     }
 }

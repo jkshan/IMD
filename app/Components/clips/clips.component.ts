@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { clipService } from './clipService';
-import { videoClip } from '../../Entity/videoClip';
+import { ClipService } from './clipService';
+import { VideoClip } from '../../Entity/videoClip';
 import { EmitterService } from '../../Service/emitterService'
 
 @Component({
@@ -14,18 +14,19 @@ import { EmitterService } from '../../Service/emitterService'
     }`]
 })
 export class ClipsComponent implements OnInit {
-    constructor(private _clipService: clipService) {
+    clips: Array<VideoClip>;
+    @Input() id: string;
+
+    constructor(private _clipService: ClipService) {
     }
-    clips: Array<videoClip>;
+
     ngOnInit(): void {
         this._clipService.getClips().subscribe(p => {
             this.clips = p;
         }, error => console.log(error));
     }
 
-    @Input() id: string;
-
-    onReelVideoAdded(value: videoClip) {
+    onReelVideoAdded(value: VideoClip) {
         EmitterService.get(this.id).emit(value);
     }
 }

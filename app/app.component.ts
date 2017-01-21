@@ -1,30 +1,31 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { clipService } from './Components/clips/clipService';
-import { videoClip, reelVideo, reelVideoClip } from './Entity/videoClip';
+import { ClipService } from './Components/clips/clipService';
 
-//Service
+// Service
 import { EmitterService } from './Service/emitterService';
 
 @Component({
   moduleId: __moduleName,
   selector: 'my-app',
   templateUrl: 'app.component.html',
-  providers: [clipService, EmitterService]
+  providers: [ClipService, EmitterService]
 })
 export class AppComponent implements OnInit {
+
+  linkId: string = 'clips-reel-link';
+
+  public options = {
+    position: ['bottom', 'right'],
+    timeOut: 5000,
+    lastOnBottom: true,
+  };
 
   constructor() {
 
   }
-  ngOnInit() {
 
-  }
-  linkId: string = "clips-reel-link";
-  public options = {
-    position: ["bottom", "right"],
-    timeOut: 5000,
-    lastOnBottom: true,
+  ngOnInit() {
 
   }
 }

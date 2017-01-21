@@ -3,15 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
-import { SimpleNotificationsModule, SimpleNotificationsComponent } from 'angular2-notifications';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
-//Components
+// Components
 import { AppComponent } from './app.component';
 import { ClipsComponent } from './Components/clips/clips.component';
 import { ClipComponent } from './Components/clip/clip.component';
 import { ReelClipsComponent } from './Components/reelClips/reelClips.component';
 
-//Filters
+// Filters
 import { TimeCodePipe } from './Filters/timeCodePipe';
 
 @NgModule({

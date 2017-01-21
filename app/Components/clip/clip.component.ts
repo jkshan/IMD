@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { videoClip } from '../../Entity/videoClip';
-import { TimeCodePipe } from '../../Filters/timeCodePipe'
+import { VideoClip } from '../../Entity/videoClip';
 
 @Component({
     moduleId: __moduleName,
@@ -13,16 +12,16 @@ import { TimeCodePipe } from '../../Filters/timeCodePipe'
     }`]
 })
 export class ClipComponent implements OnInit {
+
+    @Input() clip: VideoClip;
+    @Output() reelVideoAdded: EventEmitter<VideoClip> =
+    new EventEmitter<VideoClip>();
+
     constructor() { }
 
     ngOnInit() { }
 
-    @Input() clip: videoClip;
-
-    @Output() reelVideoAdded: EventEmitter<videoClip> =
-    new EventEmitter<videoClip>();
-
-    addToReel(value: videoClip) {
+    addToReel(value: VideoClip) {
         this.reelVideoAdded.emit(value);
     }
 
