@@ -25,19 +25,19 @@ export class ReelClipsComponent implements OnInit {
     }
 
     addReelClip(value: VideoClip) {
-        if (this.reel.Clips == undefined || this.reel.Clips.length == 0) {
+        if (this.reel.Clips === undefined || this.reel.Clips.length === 0) {
             this.reel.Clips = new Array<ReelVideoClip>();
             this.reel.Clips.push((<ReelVideoClip>value));
             this.reel.Clips[0].order = 1;
             this.reel.Duration = value.Duration;
-            this._notificationService.success(value.Name, 'Added To Reel')
+            this._notificationService.success(value.Name, 'Added To Reel');
         } else {
-            if (this.reel.Clips[0].Standard != value.Standard) {
+            if (this.reel.Clips[0].Standard !== value.Standard) {
                 this._notificationService.error('Info: ' + value.Name, 'Cannot add Video of Diffrent Standard');
-            } else if (this.reel.Clips[0].Definition != value.Definition) {
+            } else if (this.reel.Clips[0].Definition !== value.Definition) {
                 this._notificationService.error('Info: ' + value.Name, 'Cannot add Video of Diffrent Definition');
             } else {
-                if (this.reel.Clips.find(i => i.Id == value.Id)) {
+                if (this.reel.Clips.find(i => i.Id === value.Id)) {
                     this._notificationService.info('Info', 'Video :' + value.Name + ' is already part of Reel');
                     return;
                 }

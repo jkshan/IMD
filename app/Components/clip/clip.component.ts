@@ -5,11 +5,7 @@ import { VideoClip } from '../../Entity/videoClip';
 @Component({
     moduleId: __moduleName,
     selector: 'clip',
-    templateUrl: 'clip.component.html',
-    styles: [`.row{
-        padding:5px;        
-        border: 1px solid black;
-    }`]
+    templateUrl: 'clip.component.html'
 })
 export class ClipComponent implements OnInit {
 

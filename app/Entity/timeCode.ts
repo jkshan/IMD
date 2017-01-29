@@ -6,7 +6,7 @@ export class TimeCode {
     frameRate: number;
 
     public static add(first: TimeCode, second: TimeCode): TimeCode {
-        if (first.standard != second.standard) {
+        if (first.standard !== second.standard) {
             console.log('Video standard should match to add the timecode');
             throw new Error('Video standard should match to add the timecode');
         }
@@ -17,7 +17,7 @@ export class TimeCode {
     }
 
     public static subtract(first: TimeCode, second: TimeCode): TimeCode {
-        if (first.standard != second.standard) {
+        if (first.standard !== second.standard) {
             throw new Error('Video standard should match to subtract the timecode');
         }
 
@@ -29,11 +29,11 @@ export class TimeCode {
 
     constructor(private timeCode: string, private standard: string) {
         let timeCodeArray = timeCode.split(':');
-        if (timeCodeArray.length != 4) {
+        if (timeCodeArray.length !== 4) {
             console.log('Invalid timecode Value' + timeCode);
             throw new Error('Invalid timecode Value' + timeCode);
         }
-        if (['PAL', 'NTSC'].indexOf(standard) == -1) {
+        if (['PAL', 'NTSC'].indexOf(standard) === -1) {
             console.log('Invalid video standard');
             throw new Error('Invalid video standard');
         }
@@ -42,9 +42,9 @@ export class TimeCode {
         this.minutes = this.convertToInt(timeCodeArray[1]);
         this.seconds = this.convertToInt(timeCodeArray[2]);
         this.frames = this.convertToInt(timeCodeArray[3]);
-        if (this.standard == 'PAL') {
+        if (this.standard === 'PAL') {
             this.frameRate = 25;
-        } else if (this.standard == 'NTSC') {
+        } else if (this.standard === 'NTSC') {
             this.frameRate = 30;
         }
     }

@@ -2,16 +2,12 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { ClipService } from './clipService';
 import { VideoClip } from '../../Entity/videoClip';
-import { EmitterService } from '../../Service/emitterService'
+import { EmitterService } from '../../Service/emitterService';
 
 @Component({
     moduleId: __moduleName,
     selector: 'clips',
-    templateUrl: 'clips.component.html',
-    styles: [`.row{
-        padding:5px;
-        border: 1px solid black;
-    }`]
+    templateUrl: 'clips.component.html'
 })
 export class ClipsComponent implements OnInit {
     clips: Array<VideoClip>;

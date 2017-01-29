@@ -4,13 +4,13 @@
     <input type="text" [disabled]="reel.Clips.length==0" [(ngModel)]="reel.Name" class="form-control" id="reelName" placeholder="Reel Name">
 </div>
 <div class="form-group" *ngIf="reel.Clips.length>0">
-    <label class="control-label">Duration/Definition/Standard:</label>
-    <span class="form-control-static "> {{reel.Duration | TimeCode}}/{{reel.Clips[0]?.Standard}}/{{reel.Clips[0]?.Definition}}</span>
+    <span class="control-label label label-info">Duration/Definition/Standard</span>
+    <span class="form-control-static label label-info"> {{reel.Duration | TimeCode}}/{{reel.Clips[0]?.Standard}}/{{reel.Clips[0]?.Definition}}</span>
 </div>
 <div class="form-group" *ngFor="let item of reel.Clips">
     <div class="form-control-static">
         <input type="button" value="-" (click)="removeReelClip(item)" class="btn btn-warning btn-xs">
-        <span>{{item.Name}}({{item.Duration| TimeCode}})</span>
+        <span>{{item.Name}}</span> <span class="label label-info">{{item.Duration| TimeCode}}</span>
     </div>
 </div>
 <div class="form-group">
